@@ -68,7 +68,7 @@ export function ProjectForm() {
         <option value="Hour">An Hour</option>
         <option value="Asap">ASAP</option>
       </select>
-      <button type="button" className="cancel">
+      <button type="button" className="cancel" onClick={resetForm}>
         Cancel
       </button>
       <button type="submit" className="submit">
@@ -178,7 +178,7 @@ export function ActivityForm() {
         <option value="Hour">An Hour</option>
         <option value="Asap">ASAP</option>
       </select>
-      <button type="button" className="cancel">
+      <button type="button" className="cancel" onClick={resetForm}>
         Cancel
       </button>
       <button type="submit" className="submit">

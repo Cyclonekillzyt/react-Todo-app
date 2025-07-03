@@ -1,6 +1,6 @@
 import AppContext from '../context/AppContextCreator';
 import { useContext } from 'react';
-import Project from './Projects';
+import Project from '../helpers/SidebarProjects';
 
 function Sidebar() {
   const { projects } = useContext(AppContext);
