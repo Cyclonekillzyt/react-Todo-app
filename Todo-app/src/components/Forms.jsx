@@ -32,49 +32,51 @@ export function ProjectForm() {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <label htmlFor="Title">Title</label>
-      <input
-        type="text"
-        id="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-      />
-      <label htmlFor="DueDate">Due Date</label>
-      <input
-        type="Date"
-        id="DueDate"
-        value={dueDate}
-        onChange={(e) => setDueDate(e.target.value)}
-        required
-      />
-      <label htmlFor="Priority">Priority</label>
-      <select
-        id="Priority"
-        value={priority}
-        onChange={(e) => setPriority(e.target.value)}
-        required
-      >
-        <option value="Years">A Few Years</option>
-        <option value="Year">A Year</option>
-        <option value="Months">Few Months</option>
-        <option value="Month">A Month</option>
-        <option value="Weeks">A Few Weeks</option>
-        <option value="Week">A Week</option>
-        <option value="Days">Days</option>
-        <option value="Today">Today</option>
-        <option value="Hours">Hours</option>
-        <option value="Hour">An Hour</option>
-        <option value="Asap">ASAP</option>
-      </select>
-      <button type="button" className="cancel" onClick={resetForm}>
-        Cancel
-      </button>
-      <button type="submit" className="submit">
-        Submit
-      </button>
-    </form>
+    <div className="before">
+      <form className="form" onSubmit={handleSubmit}>
+        <label htmlFor="Title">Title</label>
+        <input
+          type="text"
+          id="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <label htmlFor="DueDate">Due Date</label>
+        <input
+          type="Date"
+          id="DueDate"
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+          required
+        />
+        <label htmlFor="Priority">Priority</label>
+        <select
+          id="Priority"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+          required
+        >
+          <option value="Years">A Few Years</option>
+          <option value="Year">A Year</option>
+          <option value="Months">Few Months</option>
+          <option value="Month">A Month</option>
+          <option value="Weeks">A Few Weeks</option>
+          <option value="Week">A Week</option>
+          <option value="Days">Days</option>
+          <option value="Today">Today</option>
+          <option value="Hours">Hours</option>
+          <option value="Hour">An Hour</option>
+          <option value="Asap">ASAP</option>
+        </select>
+        <button type="button" className="cancel" onClick={resetForm}>
+          Cancel
+        </button>
+        <button type="submit" className="submit">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
 
@@ -117,19 +119,24 @@ export function ActivityForm() {
       activities: [],
     };
     setProjects((prev) =>
-      prev.map( project => {
-        if (project.id === projectId){
-          const activityExists = project.activities.find(activity => activity.id === activityId);
-          if (activityExists){
-            const updatedActivities = project.activities.map(activity => activity.id === activityId ? formData : activity);
-            return {...project, activities: updatedActivities}
-          }
-          else{
-            return {...project, activities: [...project.activities, formData]}
+      prev.map((project) => {
+        if (project.id === projectId) {
+          const activityExists = project.activities.find(
+            (activity) => activity.id === activityId
+          );
+          if (activityExists) {
+            const updatedActivities = project.activities.map((activity) =>
+              activity.id === activityId ? formData : activity
+            );
+            return { ...project, activities: updatedActivities };
+          } else {
+            return {
+              ...project,
+              activities: [...project.activities, formData],
+            };
           }
         }
-      }
-      )
+      })
     );
     resetForm();
   };
